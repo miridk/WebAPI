@@ -1,0 +1,23 @@
+version: '3.4'
+
+services: 
+  webapi:
+    image: webapi
+    ports:
+     - "5001:80"
+    container_name: Web-API
+    build:
+      context: ./WebAPI/
+      dockerfile: Dockerfile
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: always
+    ports:
+    - 12435:1433 
+    container_name: SQL_Server_for-todo-list
+    environment:
+      SA_PASSWORD: Your_password123#!vpj42v0=
+      ACCEPT_EULA: Y
+
+      # The port 1433 has to be set to that, the first port can be changed
